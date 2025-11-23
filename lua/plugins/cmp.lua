@@ -1,17 +1,16 @@
+local ok_cmp, cmp = pcall(require, "cmp")
+if not ok_cmp then return end
 
-
-local cmp = require 'cmp'
+local ok_luasnip, luasnip = pcall(require, "luasnip")
+if ok_luasnip then
+  require("luasnip.loaders.from_vscode").lazy_load()
+end
 
 cmp.setup({
     snippet = {
-        -- REQUIRED - you must specify a snippet engine
         expand = function(args)
-            -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-            -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-        end
-
+        if ok_luasnip then luasnip.lsp_expand(args.body) end
+        end,
     },
     window = {
         completion = cmp.config.window.bordered(),
@@ -63,5 +62,9 @@ cmp.setup.cmdline(':', {
 })
 
 -- Set up lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-require('lspconfig')['tsserver'].setup {capabilities = capabilities}
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+vim.lsp.config["ts_ls"] = {
+  capabilities = capabilities,
+}
+vim.lsp.enable({ "ts_ls" })

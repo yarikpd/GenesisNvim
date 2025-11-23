@@ -63,15 +63,14 @@ require("lazy").setup({
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
 	{
-	  "max397574/better-escape.nvim",
-	  config = function()
-  	    require("better_escape").setup({
-  	    	mapping = {"jk"},
-  	    	timeout = vim.o.timeoutlen, -- the time in which the keys must be hit in ms. Use option timeoutlen by default
-    	    clear_empty_lines = false, -- clear line after escaping if there is only whitespace
-    	    keys = "<Esc>",
-  	    })
-  	  end
+		"max397574/better-escape.nvim",
+		event = "InsertEnter",
+		opts = {
+			mappings = { "jk" },           -- последовательность для выхода из Insert режима
+			timeout = vim.o.timeoutlen or 300, -- время на нажатие
+			clear_line = false,            -- заменяет старое clear_empty_lines
+			escape_key = "<Esc>",          -- заменяет старое keys
+		}
 	},
 
 	{
