@@ -35,9 +35,9 @@ vim.opt.mousefocus = true
 
 -- Line Numbers
 vim.opt.number = true                  -- Показывает номера строк
-vim.opt.relativenumber = true          -- Показывает расстояние к нужной строке относительно нашей позиции
+vim.opt.relativenumber = false         -- Показывает расстояние к нужной строке относительно нашей позиции
 vim.wo.number = true                   -- Показывает номера строк
-vim.wo.relativenumber = true           -- Показывает расстояние к нужной строке относительно нашей позиции
+vim.wo.relativenumber = false          -- Показывает расстояние к нужной строке относительно нашей позиции
 
 -- Splits
 vim.opt.splitbelow = true

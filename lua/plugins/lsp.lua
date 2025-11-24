@@ -32,7 +32,28 @@ vim.lsp.config['ruff'] = {
   },
 }
 
-vim.lsp.enable({ 'pyright', 'ts_ls', 'rust_analyzer', 'ruff' })
+-- capabilities для cmp
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+-- clangd через новый API (без require('lspconfig'))
+vim.lsp.config["clangd"] = {
+  capabilities = capabilities,
+  cmd = { "clangd",
+    "--background-index",
+    "--clang-tidy",
+    "--completion-style=detailed",
+    "--header-insertion=iwyu",
+    "--offset-encoding=utf-16"  -- важно для некоторых систем
+  },
+  init_options = { clangdFileStatus = true },
+}
+
+-- Расширения clangd (inlay hints, AST и т.д.)
+require("clangd_extensions").setup({
+  inlay_hints = { inline = false, only_current_line = false },
+})
+
+vim.lsp.enable({ 'pyright', 'ts_ls', 'rust_analyzer', 'ruff', 'clangd' })
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -55,3 +76,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end, opts)
   end,
 })
+

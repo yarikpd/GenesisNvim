@@ -14,7 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	
-	{ 'nvim-treesitter/nvim-treesitter' },
 	{ 'neovim/nvim-lspconfig' },
 
 	-- Autocomplete support
@@ -66,10 +65,9 @@ require("lazy").setup({
 		"max397574/better-escape.nvim",
 		event = "InsertEnter",
 		opts = {
-			mappings = { "jk" },           -- последовательность для выхода из Insert режима
+			default_mappings = true,           -- последовательность для выхода из Insert режима
 			timeout = vim.o.timeoutlen or 300, -- время на нажатие
 			clear_line = false,            -- заменяет старое clear_empty_lines
-			escape_key = "<Esc>",          -- заменяет старое keys
 		}
 	},
 
@@ -149,5 +147,50 @@ require("lazy").setup({
 	{ 'echasnovski/mini.nvim', version = false },
 	{ 'echasnovski/mini.move', version = false },
 	{ 'echasnovski/mini.pairs', version = false },
+    
+    -- мои плагины
+    { "wakatime/vim-wakatime", lazy = false },
+
+    -- ######################################
+    --                  C++
+    -- ######################################
+
+    -- Core
+    { "williamboman/mason.nvim", build = ":MasonUpdate", config = true },
+    { "williamboman/mason-lspconfig.nvim" },
+    { "neovim/nvim-lspconfig" },
+    { "p00f/clangd_extensions.nvim" },
+
+    -- Completion
+    { "hrsh7th/nvim-cmp" },
+    { "hrsh7th/cmp-nvim-lsp" },
+    { "hrsh7th/cmp-path" },
+    { "hrsh7th/cmp-buffer" },
+    { "L3MON4D3/LuaSnip" },
+
+    -- Treesitter
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        opts = { ensure_installed = { "c", "cpp", "cmake", "make", "bash", "json", "lua", "python" } }
+    },
+
+    -- CMake + tasks
+    { "Civitasv/cmake-tools.nvim" },
+    { "stevearc/overseer.nvim", config = true },
+    { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
+
+    -- DAP
+    { "mfussenegger/nvim-dap" },
+    { "nvim-neotest/nvim-nio" },
+    { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
+    { "jay-babu/mason-nvim-dap.nvim", opts = { ensure_installed = { "codelldb" } } },
+
+    -- UX
+    { "folke/trouble.nvim", opts = {} },
+    { "folke/which-key.nvim", opts = {} },
+    { "windwp/nvim-autopairs", opts = {} },
+    { "numToStr/Comment.nvim", opts = {} },
+    { "lewis6991/gitsigns.nvim", opts = {} },
 
 })

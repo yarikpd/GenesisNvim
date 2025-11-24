@@ -24,3 +24,17 @@ vim.keymap.set('n', '<leader>nl', ':TodoTelescope<CR>')
 
 -- ToggleTerm
 vim.keymap.set('n', '<leader>s', ':ToggleTerm direction=float<CR>')
+
+-- Ctrl+Z = отмена
+vim.keymap.set("n", "<C-z>", "u", { noremap = true, silent = true })
+vim.keymap.set("i", "<C-z>", "<C-o>u", { noremap = true, silent = true })
+
+-- Ctrl+Shift+Z = повтор (redo)
+vim.keymap.set("n", "<C-S-z>", "<C-r>", { noremap = true, silent = true })
+vim.keymap.set("i", "<C-S-z>", "<C-o><C-r>", { noremap = true, silent = true })
+
+-- Cmake
+vim.keymap.set("n", "<leader>cg", "<cmd>CMakeGenerate<CR>")
+vim.keymap.set("n", "<leader>cb", "<cmd>CMakeBuild<CR>")
+vim.keymap.set("n", "<leader>cr", "<cmd>CMakeRun<CR>")
+vim.keymap.set("n", "<leader>ct", "<cmd>CMakeRunTest<CR>")

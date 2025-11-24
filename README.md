@@ -58,7 +58,7 @@ brew install git npm  # MacOS
 mkdir -p ~/.config/nvim
 git clone https://github.com/yarikpd/GenesisNvim.git ~/.config/nvim
 nvim --headless "+Lazy! sync" +qa
-nvim --headless "+MasonInstall pyright ruff-lsp mypy debugpy rust-analyzer" +qa
+nvim --headless "+MasonInstall pyright ruff-lsp mypy debugpy rust-analyzer clangd clang-format codelldb cmake-language-server neocmakelsp cpplint" +qa
 ```
 
 ## 🌟 Other

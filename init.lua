@@ -1,4 +1,3 @@
-
 -- Basic
 require('core.plugins')
 require('core.mappings')
@@ -23,3 +22,9 @@ require('plugins.trouble')
 require('plugins.toggleterm')
 require('plugins.whichkey')
 require('plugins.mini')
+require('plugins.clang-format')
+require('plugins.cmake-tools')
+require('plugins.dapui')
+
+-- AutoTheme
+require('mytheme.load')
